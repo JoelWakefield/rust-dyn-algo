@@ -1,9 +1,15 @@
 use std::collections::HashMap;
 
+/// Performs fibonacci up to the 186th order.
 pub fn fib(n: u128) -> Option<u128> {
     //  nothing to process if zero
     if n == 0 {
         return Some(0);
+    }
+
+    //  cannot exceed 186th order
+    if n > 186 {
+        return None;
     }
 
     //  storing previously calculated results
@@ -60,7 +66,13 @@ mod tests {
 
     #[test]
     fn returns_large() {
-        let result = fib(180);
-        assert_eq!(result, Some(18547707689471986212190138521399707760));
+        let result = fib(186);
+        assert_eq!(result, Some(332825110087067562321196029789634457848));
+    }
+
+    #[test]
+    fn cannot_return_too_large() {
+        let result = fib(187);
+        assert_eq!(result, None);
     }
 }
